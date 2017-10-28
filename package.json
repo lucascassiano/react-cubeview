@@ -1,0 +1,34 @@
+{
+  "name": "react-cubeview",
+  "version": "0.1.0",
+  "description": "UI componet - 3D camera controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucascassiano/react-cubeview.git"
+  },
+  "keywords": [
+    "three.js",
+    "autodesk",
+    "3d",
+    "camera",
+    "controller",
+    "UI",
+    "react",
+    "three",
+    "rotate"
+  ],
+  "author": "lucascassiano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucascassiano/react-cubeview/issues"
+  },
+  "homepage": "https://github.com/lucascassiano/react-cubeview#readme",
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}

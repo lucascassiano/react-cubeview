@@ -1,0 +1,26 @@
+
+<svg id="home-icon" width="94px" height="98px" viewBox="0 0 94 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0.994139598,37.7701178 L43.3401113,0.579550658 L43.3401113,0.579550658 C43.7175819,0.24803512 44.2824181,0.24803512 44.6598887,0.579550658 L87.0058604,37.7701178 L87.0058604,37.7701178 C87.4208269,38.1345643 87.4617815,38.7664034 87.097335,39.1813699 C86.9074716,39.3975525 86.6336921,39.5214812 86.3459717,39.5214812 L82,39.5214812 L82,39.5214812 C81.4477153,39.5214812 81,39.9691964 81,40.5214812 L81,89 L81,89 C81,89.5522847 80.5522847,90 80,90 L9,90 L9,90 C8.44771525,90 8,89.5522847 8,89 L8,40.5214812 L8,40.5214812 C8,39.9691964 7.55228475,39.5214812 7,39.5214812 L1.65402832,39.5214812 L1.65402832,39.5214812 C1.10174357,39.5214812 0.654028317,39.0737659 0.654028317,38.5214812 C0.654028317,38.2337608 0.777957035,37.9599813 0.994139598,37.7701178 Z" id="path-1"></path>
+        <filter x="-8.1%" y="-5.6%" width="116.1%" height="115.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.227779665 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Cube-textures" transform="translate(-57.000000, -86.000000)">
+            <g id="HOME" transform="translate(60.000000, 88.000000)">
+                <g id="Rectangle-5">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <path stroke="#747474" stroke-width="3" d="M2.98104248,38.0214812 L7,38.0214812 C8.38071187,38.0214812 9.5,39.1407693 9.5,40.5214812 L9.5,88.5 L79.5,88.5 L79.5,40.5214812 C79.5,39.1407693 80.6192881,38.0214812 82,38.0214812 L85.0189575,38.0214812 L44,1.99637101 L2.98104248,38.0214812 Z"></path>
+                </g>
+                <rect id="Rectangle-6" fill="#747474" x="34" y="46" width="21" height="44"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
