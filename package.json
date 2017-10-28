@@ -1,6 +1,6 @@
 {
   "name": "react-cubeview",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "UI componet - 3D camera controller",
   "main": "index.js",
   "scripts": {
