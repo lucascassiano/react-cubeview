@@ -1,9 +1,10 @@
 {
   "name": "react-cubeview",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "UI componet - 3D camera controller",
-  "main": "index.js",
+  "main": "./src/CubeView.js",
   "scripts": {
+    "build": "babel source --presets babel-preset-es2015 --out-dir distribution",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,5 +31,9 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
