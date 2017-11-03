@@ -1,6 +1,6 @@
 {
   "name": "react-cubeview",
-  "version": "2.5.4",
+  "version": "2.5.7",
   "description": "react-cubeview",
   "main": "lib/react-cubeview.js",
   "author": "lucascassiano",
@@ -13,7 +13,9 @@
     "url": "https://github.com/lucascassiano/react-cubeview/issues"
   },
   "dependencies": {
-    "classnames": "^2.1.2"
+    "classnames": "^2.1.2",
+    "react-sizeme": "^2.3.6",
+    "three": "^0.88.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",

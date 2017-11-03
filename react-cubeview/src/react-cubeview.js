@@ -337,7 +337,7 @@ class CubeView extends Component {
             var intersects = raycaster.intersectObjects(controllers.children);
     
             if (intersects.length > 0) {
-                if (this.DEBUG) console.log('intersected', intersects);
+                if (_this.DEBUG) console.log('intersected', intersects);
                 if (INTERSECTED != intersects[0].object) {
                     if (INTERSECTED) {
                         INTERSECTED.material.color.setHex(INTERSECTED.currentHex); //<--putback
@@ -353,7 +353,7 @@ class CubeView extends Component {
                     //INTERSECTED.material.color.setHex(hoverColor);
                     INTERSECTED.material.visible = true;
     
-                    if (this.DEBUG) console.log('controller', INTERSECTED.name);
+                    if (_this.DEBUG) console.log('controller', INTERSECTED.name);
                     //INTERSECTED.visible = true;
                 }
             } else {
