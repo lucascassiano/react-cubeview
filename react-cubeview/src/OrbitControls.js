@@ -168,7 +168,7 @@ module.exports = function (THREE) {
 		this.setThetaDelta = function (angle){
 			thetaDelta-=angle;
 			//this.forceUpdate();
-		}
+		};
 
 		// pass in distance in world space to move left
 		this.panLeft = function () {

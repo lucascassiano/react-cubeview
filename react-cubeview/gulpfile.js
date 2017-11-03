@@ -11,8 +11,9 @@ var initGulpTasks = require('react-component-gulp-tasks');
  */
 
 var taskConfig = {
+
 	component: {
-		name: 'Cubeview',
+		name: 'react-cubeview',
 		dependencies: [
 			'classnames',
 			'react',
@@ -22,6 +23,7 @@ var taskConfig = {
 		],
 		lib: 'lib'
 	},
+
 	example: {
 		src: 'example/src',
 		dist: 'example/dist',

@@ -1,11 +1,11 @@
 {
   "name": "react-cubeview",
-  "version": "1.6.0",
+  "version": "2.3.0",
   "description": "react-cubeview",
-  "main": "dist/cubeview.min.js",
+  "main": "lib/react-cubeview.js",
   "homepage": "https://github.com/lucascassiano/react-cubeview",
   "authors": [
-    "lucascassiano"
+    "Lucas Cassiano"
   ],
   "moduleType": [
     "amd",
@@ -14,13 +14,7 @@
   ],
   "keywords": [
     "react",
-    "react-component",
-    "3d Viewer",
-    "orbit",
-    "controls",
-    "cube",
-    "three",
-    "UI"
+    "react-component"
   ],
   "license": "MIT",
   "ignore": [
