@@ -1,5 +1,4 @@
 # react-cubeview
-: how to help develop
 
 3D camera controller - based on autodesk's Fusion360 cube view 
 
@@ -37,7 +36,7 @@ npm install react-cubeview --save
 ```js
 import CubeView from 'react-cubeview';
 //optional css file
-import 'react-cubeview/dist/react-cubeview.css';
+import 'react-cubeview/lib/css/react-cubeview.css';
 
 //render()...
 

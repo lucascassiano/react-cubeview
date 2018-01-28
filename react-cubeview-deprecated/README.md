@@ -36,7 +36,7 @@ npm install react-cubeview --save
 ```js
 import CubeView from 'react-cubeview';
 //optional css file
-import 'react-cubeview/dist/react-cubeview.css';
+import 'react-cubeview/lib/css/react-cubeview.css';
 
 //render()...
 
@@ -54,7 +54,8 @@ import 'react-cubeview/dist/react-cubeview.css';
 ### Callback - onUpdateAngles
 
 ```js
-function myCustomCallback(phi, theta){
+//custom callback - useful for rotation sync
+function updateAngles(phi, theta){
     //...
     update main camera
     //...

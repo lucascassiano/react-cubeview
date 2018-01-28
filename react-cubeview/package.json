@@ -1,8 +1,8 @@
 {
-    "name": "react-cubeview",
-    "version": "2.6.4",
+    "name": "updateAngles",
+    "version": "2.6.5",
     "description": "react-cubeview",
-    "main": "lib/react-cubeview.js",
+    "main": "lib/index.js",
     "author": "lucascassiano",
     "homepage": "https://github.com/lucascassiano/react-cubeview",
     "repository": {
