@@ -23,7 +23,8 @@ const icon_home_hover = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTRweCIgaGVpZ
 
 var OrbitControls = require('./OrbitControls')(THREE);
 
-let renderer, scene, windowSize = { width: 0, height: 0 }, animation, controllers;
+let renderer, scene, windowSize = { width: 0, height: 0 },
+    animation, controllers;
 let mouse, raycaster, INTERSECTED;
 let cube;
 
@@ -55,7 +56,7 @@ class CubeView extends Component {
         var canvas = this.refs.threeCanvas;
         this.hoverColor = this.props.hoverColor ? this.props.hoverColor : 0x0033ff;
 
-        if(this.props.relatedCanvas)
+        if (this.props.relatedCanvas)
             this.relatedCanvas = this.props.relatedCanvas();
         //console.log('cubeView', this.relatedCanvas);
 
@@ -100,8 +101,7 @@ class CubeView extends Component {
 
                 //console.log('this.controls angles', (this.controls.getPolarAngle()/ Math.PI).toFixed(4), (this.controls.getAzimuthalAngle()/ Math.PI).toFixed(4));
             }
-        }
-        else if (this.mouseMoving = true) {
+        } else if (this.mouseMoving = true) {
             console.log('drag');
         }
     }
@@ -136,7 +136,7 @@ class CubeView extends Component {
                 phi = Math.PI * 0.5;
                 theta = Math.PI;
                 break;
-            //corners
+                //corners
             case 'c0': //FRONT,TOP,RIGHT
                 phi = Math.PI * 0.25;
                 theta = Math.PI * 0.25;
@@ -169,7 +169,7 @@ class CubeView extends Component {
                 phi = Math.PI * 0.25;
                 theta = -Math.PI * 0.75;
                 break;
-            //Edges
+                //Edges
             case 'e0': //TOP,FRONT
                 phi = Math.PI * 0.25;
                 theta = 0;
@@ -308,10 +308,9 @@ class CubeView extends Component {
         /*controls*/
 
         if (this.relatedCanvas) {
-            this.controls = new OrbitControls(this.camera, this.relatedCanvas);
-        }
-        else {
-            this.controls = new OrbitControls(this.camera);//new OrbitControls(camera);
+            this.controls = new OrbitControls(this.camera, this.refs.threeCanvas, this.relatedCanvas);
+        } else {
+            this.controls = new OrbitControls(this.camera, this.refs.threeCanvas); //new OrbitControls(camera);
         }
 
         this.controls.enablePan = false;
@@ -330,29 +329,29 @@ class CubeView extends Component {
         this._render = function() {
             animation = requestAnimationFrame(_this._render);
             renderer.render(scene, _this.camera);
-    
+
             _this.camera.updateMatrixWorld();
-    
+
             raycaster.setFromCamera(mouse, _this.camera);
             var intersects = raycaster.intersectObjects(controllers.children);
-    
+
             if (intersects.length > 0) {
                 if (_this.DEBUG) console.log('intersected', intersects);
                 if (INTERSECTED != intersects[0].object) {
                     if (INTERSECTED) {
                         INTERSECTED.material.color.setHex(INTERSECTED.currentHex); //<--putback
                         INTERSECTED.material.visible = INTERSECTED.currVisible;
-    
+
                     }
-    
+
                     INTERSECTED = intersects[0].object;
                     INTERSECTED.currentHex = INTERSECTED.material.color.getHex(); //<-putback
-    
+
                     INTERSECTED.currVisible = INTERSECTED.material.visible;
-    
+
                     //INTERSECTED.material.color.setHex(hoverColor);
                     INTERSECTED.material.visible = true;
-    
+
                     if (_this.DEBUG) console.log('controller', INTERSECTED.name);
                     //INTERSECTED.visible = true;
                 }
@@ -361,9 +360,9 @@ class CubeView extends Component {
                     INTERSECTED.material.color.setHex(INTERSECTED.currentHex); //<-putback
                     INTERSECTED.material.visible = INTERSECTED.currVisible;
                 }
-    
+
                 INTERSECTED = null;
-    
+
                 _this.controls.update();
             }
         }
@@ -399,11 +398,11 @@ class CubeView extends Component {
         var canvas = this.refs.threeCanvas;
         var rect = canvas.getBoundingClientRect();
         mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        mouse.y = - ((event.clientY - rect.top) / rect.height) * 2 + 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
         if (this.DEBUG) console.log('mouse', mouse);
     }
 
-    
+
 
 
 
@@ -648,25 +647,19 @@ class CubeView extends Component {
         var edgeCube = new THREE.Mesh(geometry, material);
         if (x > 0) {
             edgeCube.position.x = (size / 2) * _x - sizex / 2;
-        }
-
-
-        else {
+        } else {
             edgeCube.position.x = x == 0 ? 0 : (size / 2) * _x + sizex / 2;
         }
 
         if (y > 0) {
             edgeCube.position.y = (size / 2) * _y - sizey / 2;
-        }
-
-        else {
+        } else {
             edgeCube.position.y = y == 0 ? 0 : (size / 2) * _y + sizey / 2;
         }
 
         if (z > 0) {
             edgeCube.position.z = (size / 2) * _z - sizez / 2;
-        }
-        else {
+        } else {
             edgeCube.position.z = z == 0 ? 0 : (size / 2) * _z + sizez / 2;
         }
 
@@ -702,25 +695,19 @@ class CubeView extends Component {
         var edgeCube = new THREE.Mesh(geometry, material);
         if (x > 0) {
             edgeCube.position.x = (size / 2) * _x - sizex / 2;
-        }
-
-        else {
+        } else {
             edgeCube.position.x = x == 0 ? 0 : (size / 2) * _x + sizex / 2;
         }
 
         if (y > 0) {
             edgeCube.position.y = (size / 2) * _y - sizey / 2;
-        }
-
-        else {
+        } else {
             edgeCube.position.y = y == 0 ? 0 : (size / 2) * _y + sizey / 2;
         }
 
         if (z > 0) {
             edgeCube.position.z = (size / 2) * _z - sizez / 2;
-        }
-
-        else {
+        } else {
             edgeCube.position.z = z == 0 ? 0 : (size / 2) * _z + sizez / 2;
         }
 
@@ -741,20 +728,17 @@ class CubeView extends Component {
         var cornerCube = new THREE.Mesh(geometry, material);
         if (x > 0) {
             cornerCube.position.x = (size / 2) * _x - c_cube / 2;
-        }
-        else {
+        } else {
             cornerCube.position.x = (size / 2) * _x + c_cube / 2;
         }
         if (y > 0) {
             cornerCube.position.y = (size / 2) * _y - c_cube / 2;
-        }
-        else {
+        } else {
             cornerCube.position.y = (size / 2) * _y + c_cube / 2;
         }
         if (z > 0) {
             cornerCube.position.z = (size / 2) * _z - c_cube / 2;
-        }
-        else {
+        } else {
             cornerCube.position.z = (size / 2) * _z + c_cube / 2;
         }
         return cornerCube;
@@ -790,19 +774,22 @@ class CubeView extends Component {
     render() {
         var { width, height } = this.props.size;
 
-        return (
-            <div className='cube-view-container'>
+        return ( <
+            div className = 'cube-view-container' >
 
-                <img src={this.state.icon_home} className='button-home'
-                    onMouseOver={this.hoverHomeOn}
-                    onMouseOut={
-                        this.hoverHomeOff
-                    }
-                    onClick={this.clickHome}
-                />
+            <
+            img src = { this.state.icon_home }
+            className = 'button-home'
+            onMouseOver = { this.hoverHomeOn }
+            onMouseOut = {
+                this.hoverHomeOff
+            }
+            onClick = { this.clickHome }
+            />
 
-                <canvas ref='threeCanvas' ></canvas>
-            </div>
+            <
+            canvas ref = 'threeCanvas' > < /canvas> <
+            /div>
         );
     }
 
@@ -811,4 +798,3 @@ class CubeView extends Component {
 
 //export default Container3;
 export default sizeMe({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);
-

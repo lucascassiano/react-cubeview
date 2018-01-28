@@ -1,0 +1,23 @@
+.cube-view {
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    width: 10%;
+    min-width: 100px;
+    max-width: 200px;
+    z-index: 1;
+}
+
+.canvas-3d {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin-top: 30px;
+    z-index: 0;
+    /* background: -moz-linear-gradient(top,  rgba(51,51,51,0) 0%, rgba(80,80,80,1) 100%); /* FF3.6-15 */
+    /* background: -webkit-linear-gradient(top,  rgba(51,51,51,0) 0%,rgba(80,80,80,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    /*background: linear-gradient(to bottom,  rgba(51,51,51,0) 0%,rgba(80,80,80,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* Rectangle 3: */
+    background: -webkit-linear-gradient(-136deg, #3d3d3d 0%, #212121 100%);
+    max-height: calc(100vh - 30px);
+}

@@ -1,0 +1,36 @@
+.button-home{
+    top:0px;
+    left:0px;
+    position: absolute;
+    width:12%;
+    min-width: 20px;
+    opacity: 0;
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 200ms;
+    -webkit-transition-timing-function: ease-in-out;
+}
+.cube-view-container:hover .button-home{
+    opacity: 1;
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition: 200ms;
+    -webkit-transition-timing-function: ease-in-out;
+}
+
+.button-home:hover {
+    cursor: pointer;
+}
+
+/*
+.button-home {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,255,255, 0.5);
+    transition: all .3s linear;
+  }*/

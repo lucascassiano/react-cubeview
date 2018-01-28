@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Cubeview = require('react-cubeview');
+var Cubeview = require('../dist/react-cubeview.js');
 
 var App = React.createClass({
 	render() {

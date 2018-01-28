@@ -19,7 +19,7 @@ module.exports = function(THREE) {
     /* -- last edit comments
     this script was changed to support better gets and sets of angles
     */
-    function OrbitControls(object, domElement, updateExternal) {
+    function OrbitControls(object, domElement, secondaryDomElement) {
 
         this.object = object;
 
@@ -102,7 +102,6 @@ module.exports = function(THREE) {
             .clone();
         this.zoom0 = this.object.zoom;
 
-        this.updateExternal = updateExternal;
         //
         // internals
         //
@@ -418,11 +417,6 @@ module.exports = function(THREE) {
                 scale = 1;
                 panOffset.set(0, 0, 0);
 
-                //new
-                if (scope.updateExternal) {
-                    scope.updateExternal(phi, theta);
-                }
-
                 // update condition is: min(camera displacement, camera rotation in radians)^2 >
                 // EPS using small-angle approximation cos(x/2) = 1 - x^2 / 8
 
@@ -526,12 +520,7 @@ module.exports = function(THREE) {
 
                 scale = 1;
                 panOffset.set(0, 0, 0);
-                /*
-                //new
-                if (scope.updateExternal) {
-                    scope.updateExternal(spherical.phi, spherical.theta);
-                }
-                */
+
                 // update condition is: min(camera displacement, camera rotation in radians)^2 >
                 // EPS using small-angle approximation cos(x/2) = 1 - x^2 / 8
 
@@ -586,7 +575,38 @@ module.exports = function(THREE) {
                 .domElement
                 .removeEventListener('keydown', onKeyDown, false);
 
+            if (scope.secondaryDomElement) {
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('contextmenu', onContextMenu, false);
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('mousedown', onMouseDown, false);
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('wheel', onMouseWheel, false);
 
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('touchstart', onTouchStart, false);
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('touchend', onTouchEnd, false);
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('touchmove', onTouchMove, false);
+
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('mousemove', onMouseMove, false);
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('mouseup', onMouseUp, false);
+
+                secondaryDomElement
+                    .domElement
+                    .removeEventListener('keydown', onKeyDown, false);
+            }
             //scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
         };
 
@@ -617,19 +637,13 @@ module.exports = function(THREE) {
         function rotateLeft(angle) {
 
             sphericalDelta.theta -= angle;
-            //new
-            if (scope.updateExternal) {
-                scope.updateExternal(spherical.phi, spherical.theta);
-            }
+
         }
 
         function rotateUp(angle) {
 
             sphericalDelta.phi -= angle;
-            //new
-            if (scope.updateExternal) {
-                scope.updateExternal(spherical.phi, spherical.theta);
-            }
+
         }
 
         var panLeft = function() {
@@ -1284,7 +1298,33 @@ module.exports = function(THREE) {
             .domElement
             .addEventListener('keydown', onKeyDown, false);
 
+        if (scope.secondaryDomElement) {
+            scope
+                .secondaryDomElement
+                .addEventListener('contextmenu', onContextMenu, false);
 
+            scope
+                .secondaryDomElement
+                .addEventListener('mousedown', onMouseDown, false);
+            scope
+                .secondaryDomElement
+                .addEventListener('wheel', onMouseWheel, false);
+
+            scope
+                .secondaryDomElement
+                .addEventListener('touchstart', onTouchStart, false);
+            scope
+                .secondaryDomElement
+                .addEventListener('touchend', onTouchEnd, false);
+            scope
+                .secondaryDomElement
+                .addEventListener('touchmove', onTouchMove, false);
+
+            scope
+                .secondaryDomElement
+                .addEventListener('keydown', onKeyDown, false);
+        }
+        // force an update at start
 
         this.update();
 

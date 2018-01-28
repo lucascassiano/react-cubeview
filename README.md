@@ -35,6 +35,8 @@ npm install react-cubeview --save
 
 ```js
 import CubeView from 'react-cubeview';
+//optional css file
+import 'react-cubeview/dist/react-cubeview.css';
 
 //render()...
 
@@ -46,6 +48,7 @@ import CubeView from 'react-cubeview';
     antialias={true} 
     onUpdateAngles={this.updateAngles} 
 />
+
 ```
 
 ### Callback - onUpdateAngles
