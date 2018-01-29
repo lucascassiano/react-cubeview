@@ -1,6 +1,6 @@
 {
     "name": "react-cubeview",
-    "version": "2.6.17",
+    "version": "2.6.18",
     "description": "react-cubeview",
     "main": "lib/index.js",
     "author": "lucascassiano",
@@ -53,8 +53,8 @@
         "test:watch": "jest --watch",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
-        "release": "npm run build && npm version patch && npm publish",
-        "git": "git add . && git commit -m \"new version\" && git push origin master"
+        "release": "npm run build && npm version patch && npm publish && npm run git",
+        "git": "git add . && git commit -m \"new version (automatically generated)\" && git push origin master"
     },
     "jest": {
         "moduleFileExtensions": [
