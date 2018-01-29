@@ -14,10 +14,6 @@ var _three = require('three');
 
 var THREE = _interopRequireWildcard(_three);
 
-var _reactSizeme = require('react-sizeme');
-
-var _reactSizeme2 = _interopRequireDefault(_reactSizeme);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -27,6 +23,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//import sizeMe from 'react-sizeme';
 
 /*old import - useful for development, but not for production
 //import texture_top from './img/cubeview_TOP.png';
@@ -84,6 +82,11 @@ var CubeView = function (_Component) {
         _this2.hoverHomeOff = _this2.hoverHomeOff.bind(_this2);
         _this2.clickHome = _this2.clickHome.bind(_this2);
         _this2.setAngles = _this2.setAngles.bind(_this2);
+
+        //defining default size, if width and height are not passed as props
+        //this.props.width = this.props.width ? this.props.width : 100;
+        //this.props.height = this.props.height ? this.props.height : 100;
+
         return _this2;
     }
 
@@ -341,7 +344,8 @@ var CubeView = function (_Component) {
                 width = _props.width,
                 height = _props.height;
 
-            height = width / this.props.aspect;
+            if (this.props.aspect) height = width / this.props.aspect;
+
             var canvas = this.refs.threeCanvas;
 
             renderer.setSize(width, height);
@@ -351,15 +355,15 @@ var CubeView = function (_Component) {
     }, {
         key: 'init',
         value: function init() {
-            var _props2 = this.props,
-                width = _props2.width,
-                height = _props2.height;
+            //var { width, height } = this.props;
+            var width = this.props.width ? this.props.width : 100;
+            var height = this.props.height ? this.props.height : 100;
 
             var canvas = this.refs.threeCanvas;
 
-            height = width / this.props.aspect;
+            if (this.props.aspect) height = width / this.props.aspect;
 
-            var marginTop = this.props.marginTop;
+            var marginTop = this.props.marginTop ? this.props.marginTop : 0;
 
             scene = new THREE.Scene();
             this.camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -873,10 +877,8 @@ var CubeView = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props3 = this.props,
-                width = _props3.width,
-                height = _props3.height;
-
+            var width = this.props.width ? this.props.width : 100;
+            var height = this.props.height ? this.props.height : 100;
 
             return _react2.default.createElement(
                 'div',

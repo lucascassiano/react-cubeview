@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import * as THREE from 'three';
-import sizeMe from 'react-sizeme';
+//import sizeMe from 'react-sizeme';
 
 /*old import - useful for development, but not for production
 //import texture_top from './img/cubeview_TOP.png';
@@ -49,28 +49,28 @@ class CubeView extends Component {
         this.hoverHomeOff = this.hoverHomeOff.bind(this);
         this.clickHome = this.clickHome.bind(this);
         this.setAngles = this.setAngles.bind(this);
-        
+
         //defining default size, if width and height are not passed as props
-        this.props.width = this.props.width? this.props.width : 100; 
-        this.props.height = this.props.height? this.props.height : 100;
+        //this.props.width = this.props.width ? this.props.width : 100;
+        //this.props.height = this.props.height ? this.props.height : 100;
 
     }
 
-/*
-    setAngles(phi, theta) {
-        if (this.controls) {
-            this.setAngles(phi, theta);
+    /*
+        setAngles(phi, theta) {
+            if (this.controls) {
+                this.setAngles(phi, theta);
+                
+            }
             
         }
-        
-    }
-*/
+    */
     setAngles(phi, theta) {
         if (this.controls) {
             this.controls.setExternalControl(true);
-                
-                this.controls.setPolarAngle(phi);
-                this.controls.setAzimuthalAngle(theta);
+
+            this.controls.setPolarAngle(phi);
+            this.controls.setAzimuthalAngle(theta);
 
             this.controls.setExternalControl(false);
         }
@@ -94,7 +94,7 @@ class CubeView extends Component {
         canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
         canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
         canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
-        
+
     }
 
     onMouseDown(event) {
@@ -275,7 +275,7 @@ class CubeView extends Component {
     updateDimensions() {
 
         var { width, height } = this.props;
-        if(this.props.aspect)
+        if (this.props.aspect)
             height = width / this.props.aspect;
 
         var canvas = this.refs.threeCanvas;
@@ -287,13 +287,16 @@ class CubeView extends Component {
     }
 
     init() {
-        var { width, height } = this.props;
-        var canvas = this.refs.threeCanvas;
+        //var { width, height } = this.props;
+        var width = this.props.width ? this.props.width : 100;
+        var height = this.props.height ? this.props.height : 100;
         
-        if(this.props.aspect)
+        var canvas = this.refs.threeCanvas;
+
+        if (this.props.aspect)
             height = width / this.props.aspect;
 
-        const marginTop = this.props.marginTop ? this.props.marginTop:0;
+        const marginTop = this.props.marginTop ? this.props.marginTop : 0;
 
         scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -425,9 +428,9 @@ class CubeView extends Component {
         mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
         if (this.DEBUG) console.log('mouse', mouse);
     }
-    _createdOutlineCube(object){
-        var box = new THREE.BoxHelper( object, 0x0022FF,);
-        object.add( box );
+    _createdOutlineCube(object) {
+        var box = new THREE.BoxHelper(object, 0x0022FF, );
+        object.add(box);
     }
 
     //Insert all 3D elements here
@@ -796,10 +799,12 @@ class CubeView extends Component {
     }
 
     render() {
-        var { width, height } = this.props;
+        var width = this.props.width ? this.props.width : 100;
+        var height = this.props.height ? this.props.height : 100;
+        
 
         return ( 
-            <div className = 'cube-view-container'> 
+            <div className = 'cube-view-container' >
             <img src = { this.state.icon_home }
             className = 'button-home'
             onMouseOver = { this.hoverHomeOn }
@@ -807,10 +812,10 @@ class CubeView extends Component {
                 this.hoverHomeOff
             }
             onClick = { this.clickHome }
-            
+
             />
 
-            <canvas ref = 'threeCanvas'> </canvas> 
+            <canvas ref = 'threeCanvas' > </canvas>  
             </div>
         );
     }
