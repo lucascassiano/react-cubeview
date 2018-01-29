@@ -16,14 +16,14 @@ This component uses a 'hacked' version of the three.js orbit controls. I just ad
 
 Live demo: [lucascassiano.github.io/react-cubeview](http://lucascassiano.github.io/react-cubeview/)
 
-To build the examples locally, run:
+To build the examples (storyboard) locally, run:
 
 ```
 npm install
 npm start
 ```
 
-Then open [`localhost:8000`](http://localhost:8000) in a browser.
+Then open [`localhost:6060`](http://localhost:6060) in a browser.
 
 ## Installation
 

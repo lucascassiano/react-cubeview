@@ -873,9 +873,9 @@ var CubeView = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props$size = this.props.size,
-                width = _props$size.width,
-                height = _props$size.height;
+            var _props3 = this.props,
+                width = _props3.width,
+                height = _props3.height;
 
 
             return _react2.default.createElement(

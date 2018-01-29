@@ -22,27 +22,13 @@ var objects = {};
 var updateAngles = (phi, theta) => {
 	if(container)
 	    container.setAngles(phi, theta);
-    //console.log(phi, theta);
-    //if(cube)
-       //console.log(cube.setAngles);
-	//console.log(phi, theta);
 };
-
-//updateAngles = updateAngles.bind(cube);
-
-
-
-
-//}
 
 var updateAngles2 = (phi, theta)=>{
     if(cube){
         cube.setAngles(phi, theta);
     }
 }
-
-//updateAngles2 = updateAngles2.bind(container);
-//updateAngles = updateAngles.bind(this);
 
 //3D ui controllers
 var getDomContainer = () =>{
@@ -83,7 +69,6 @@ storiesOf('react-cubeview', module)
 					zoom={6}
 					antialias={false}
                     key={'cv'}
-                    size={({width:100, height:100})}
                     width={100}
                     height={100}
 					onUpdateAngles={updateAngles}

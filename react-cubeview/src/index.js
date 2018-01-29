@@ -788,7 +788,7 @@ class CubeView extends Component {
     }
 
     render() {
-        var { width, height } = this.props.size;
+        var { width, height } = this.props;
 
         return ( 
             <div className = 'cube-view-container'> 
