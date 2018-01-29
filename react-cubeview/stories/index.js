@@ -10,7 +10,7 @@ import Container3d from 'react-container-3d';
 import CubeView from '../src';
 
 import './style.css';
-import './../src/css/cubeview.css';
+import './../src/css/react-cubeview.css';
 
 //import test1 from "./test1";
 
@@ -20,19 +20,32 @@ var cube, container;
 var objects = {};
 
 var updateAngles = (phi, theta) => {
-	//if(cube)
-	container.setAngles(phi, theta);
-    console.log(phi, theta);
-    console.log(cube.setAngles);
+	if(container)
+	    container.setAngles(phi, theta);
+    //console.log(phi, theta);
+    //if(cube)
+       //console.log(cube.setAngles);
 	//console.log(phi, theta);
 };
 
-updateAngles = updateAngles.bind(cube);
+//updateAngles = updateAngles.bind(cube);
 
+
+
+
+//}
+
+var updateAngles2 = (phi, theta)=>{
+    if(cube){
+        cube.setAngles(phi, theta);
+    }
+}
+
+//updateAngles2 = updateAngles2.bind(container);
 //updateAngles = updateAngles.bind(this);
 
 //3D ui controllers
-function getDomContainer() {
+var getDomContainer = () =>{
 	return ReactDOM.findDOMNode(container);
 }
 
@@ -58,7 +71,7 @@ storiesOf('react-cubeview', module)
 				addControls={true}
 				addGrid={true}
 				antialias={false}
-				relatedCanvas={getDomCube}
+                onUpdateAngles={updateAngles2}
 			/>
 
 			<div className="cube-view">
@@ -69,7 +82,10 @@ storiesOf('react-cubeview', module)
 					ref={c => (cube = c)}
 					zoom={6}
 					antialias={false}
-					key={'cv'}
+                    key={'cv'}
+                    size={({width:100, height:100})}
+                    width={100}
+                    height={100}
 					onUpdateAngles={updateAngles}
 				/>
 			</div>

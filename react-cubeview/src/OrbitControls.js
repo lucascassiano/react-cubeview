@@ -103,9 +103,14 @@ module.exports = function(THREE) {
         this.zoom0 = this.object.zoom;
 
         this.updateExternal = updateExternal;
-        //
-        // internals
-        //
+        this.isExternallyControlled = false;
+
+        this.setExternalControl = function(value = false) {
+                this.isExternallyControlled = value;
+            }
+            //
+            // internals
+            //
 
         var scope = this;
 
@@ -157,15 +162,11 @@ module.exports = function(THREE) {
         //
 
         this.getPolarAngle = function() {
-
             return spherical.phi;
-
         };
 
         this.getAzimuthalAngle = function() {
-
             return spherical.theta;
-
         };
 
         this.setPolarAngle = function(angle) {
@@ -190,6 +191,29 @@ module.exports = function(THREE) {
             //this.forceUpdate();
         };
 
+        this.setSyncRotationObject = function(syncObject) {
+            this.syncObject;
+            if (this.syncObject.syncRotation) {
+                this.syncObject.syncRotation(this.setAngles);
+            }
+        }
+
+        /**
+         * update Orbit Controls
+         * @param {*} force 
+         */
+        this.updateControls = function(force = false) {
+            if (force)
+                this.forceUpdate();
+            else
+                this.update();
+        }
+
+        this.setAngles = function(_phi, _theta) {
+            phi = _phi;
+            theta = _theta;
+            this.forceUpdate();
+        }
 
         this.rotateLeft = function(angle) {
 
@@ -429,7 +453,7 @@ module.exports = function(THREE) {
                 panOffset.set(0, 0, 0);
 
                 //new
-                if (scope.updateExternal) {
+                if (scope.updateExternal && !scope.isExternallyControlled) {
                     scope.updateExternal(phi, theta);
                 }
 
@@ -536,12 +560,12 @@ module.exports = function(THREE) {
 
                 scale = 1;
                 panOffset.set(0, 0, 0);
-                /*
+
                 //new
-                if (scope.updateExternal) {
+                if (scope.updateExternal && !scope.isExternallyControlled) {
                     scope.updateExternal(spherical.phi, spherical.theta);
                 }
-                */
+
                 // update condition is: min(camera displacement, camera rotation in radians)^2 >
                 // EPS using small-angle approximation cos(x/2) = 1 - x^2 / 8
 
@@ -628,8 +652,8 @@ module.exports = function(THREE) {
 
             sphericalDelta.theta -= angle;
             //new
-            if (scope.updateExternal) {
-                scope.updateExternal(spherical.phi, spherical.theta);
+            if (scope.updateExternal && !scope.isExternallyControlled) {
+                scope.updateExternal(phi, theta);
             }
         }
 
@@ -637,8 +661,8 @@ module.exports = function(THREE) {
 
             sphericalDelta.phi -= angle;
             //new
-            if (scope.updateExternal) {
-                scope.updateExternal(spherical.phi, spherical.theta);
+            if (scope.updateExternal && !scope.isExternallyControlled) {
+                scope.updateExternal(phi, theta);
             }
         }
 

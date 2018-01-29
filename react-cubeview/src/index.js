@@ -51,11 +51,23 @@ class CubeView extends Component {
         this.setAngles = this.setAngles.bind(this);
     }
 
-
+/*
     setAngles(phi, theta) {
         if (this.controls) {
-            this.controls.setPolarAngleNoForcing(phi);
-            this.controls.setAzimuthalAngleNoForcing(theta);
+            this.setAngles(phi, theta);
+            
+        }
+        
+    }
+*/
+    setAngles(phi, theta) {
+        if (this.controls) {
+            this.controls.setExternalControl(true);
+                
+                this.controls.setPolarAngle(phi);
+                this.controls.setAzimuthalAngle(theta);
+
+            this.controls.setExternalControl(false);
         }
     }
 
@@ -73,10 +85,11 @@ class CubeView extends Component {
         this.updateDimensions();
 
         window.addEventListener('resize', this.updateDimensions.bind(this));
+
         canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
         canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
         canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
-
+        
     }
 
     onMouseDown(event) {
@@ -240,25 +253,26 @@ class CubeView extends Component {
         }
         //console.log('this.controls angles', (this.controls.getPolarAngle() / Math.PI).toFixed(4), (this.controls.getAzimuthalAngle() / Math.PI).toFixed(4));
         console.log('angles', phi, theta);
-
     }
 
     componentWillUnmount() {
         var canvas = this.refs.threeCanvas;
+
         renderer = null;
         scene = null;
         this.camera = null;
-        window.removeEventListener('resize', this.updateDimensions.bind(this));
-        //canvas.removeEventListener('mousemove', this.onMouseMove.bind(this));
-        //canvas.removeEventListener('mouseup', this.handleClick.bind(this));
+        window.removeEventListener('resize', this.updateDimensions);
+        //canvas.removeEventListener('mousemove', this.onMouseMove);
+        //canvas.removeEventListener('mouseup', this.handleClick);
         //this.controls.dispose();
     }
 
     updateDimensions() {
 
-        var { width, height } = this.props.size;
+        var { width, height } = this.props;
         height = width / this.props.aspect;
         var canvas = this.refs.threeCanvas;
+
         renderer.setSize(width, height);
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
@@ -266,8 +280,9 @@ class CubeView extends Component {
     }
 
     init() {
-        var { width, height } = this.props.size;
+        var { width, height } = this.props;
         var canvas = this.refs.threeCanvas;
+
         height = width / this.props.aspect;
 
         const marginTop = this.props.marginTop;
@@ -309,9 +324,9 @@ class CubeView extends Component {
         /*controls*/
 
         if (this.updateAngles) {
-            this.controls = new OrbitControls(this.camera, this.refs.threeCanvas, this.updateAngles);
+            this.controls = new OrbitControls(this.camera, canvas, this.updateAngles);
         } else {
-            this.controls = new OrbitControls(this.camera, this.refs.threeCanvas); //new OrbitControls(camera);
+            this.controls = new OrbitControls(this.camera, canvas); //new OrbitControls(camera);
         }
 
         this.controls.enablePan = false;
@@ -342,7 +357,7 @@ class CubeView extends Component {
                     if (INTERSECTED) {
                         INTERSECTED.material.color.setHex(INTERSECTED.currentHex); //<--putback
                         INTERSECTED.material.visible = INTERSECTED.currVisible;
-
+                        //this._createdOutlineCube(INTERSECTED);
                     }
 
                     INTERSECTED = intersects[0].object;
@@ -401,6 +416,10 @@ class CubeView extends Component {
         mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
         if (this.DEBUG) console.log('mouse', mouse);
+    }
+    _createdOutlineCube(object){
+        var box = new THREE.BoxHelper( object, 0x0022FF,);
+        object.add( box );
     }
 
     //Insert all 3D elements here
@@ -641,6 +660,7 @@ class CubeView extends Component {
         var geometry = new THREE.BoxGeometry(sizex, sizey, sizez);
 
         var edgeCube = new THREE.Mesh(geometry, material);
+        //this._createdOutlineCube(edgeCube);
         if (x > 0) {
             edgeCube.position.x = (size / 2) * _x - sizex / 2;
         } else {
@@ -687,7 +707,7 @@ class CubeView extends Component {
         //*creating small cubs
         var material = new THREE.MeshBasicMaterial({ color: this.hoverColor, transparent: true, opacity: 0.5, visible: false, side: THREE.DoubleSide }); //change to false later
         var geometry = new THREE.BoxGeometry(sizex, sizey, sizez);
-
+        //this._createdOutlineCube(edgeCube);
         var edgeCube = new THREE.Mesh(geometry, material);
         if (x > 0) {
             edgeCube.position.x = (size / 2) * _x - sizex / 2;
@@ -779,6 +799,7 @@ class CubeView extends Component {
                 this.hoverHomeOff
             }
             onClick = { this.clickHome }
+            
             />
 
             <canvas ref = 'threeCanvas'> </canvas> 
