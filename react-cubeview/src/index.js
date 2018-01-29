@@ -50,12 +50,12 @@ class CubeView extends Component {
         this.clickHome = this.clickHome.bind(this);
         this.setAngles = this.setAngles.bind(this);
     }
-    
 
-    setAngles (phi, theta){
+
+    setAngles(phi, theta) {
         if (this.controls) {
-            this.controls.setPolarAngle(phi);
-            this.controls.setAzimuthalAngle(theta);
+            this.controls.setPolarAngleNoForcing(phi);
+            this.controls.setAzimuthalAngleNoForcing(theta);
         }
     }
 
@@ -93,7 +93,6 @@ class CubeView extends Component {
                 //this.controls.setAzimuthalAngle(Math.PI);
                 //var a = this.controls.getPolarAngle();
                 this.setViewAngle(INTERSECTED.name);
-
 
                 // var xAxis = new THREE.Vector3(1,1,0);
                 //this.camera.rotateOnAxis( xAxis, 10 );
@@ -771,21 +770,24 @@ class CubeView extends Component {
     render() {
         var { width, height } = this.props.size;
 
-        return ( 
-            <div className = 'cube-view-container' >
+        return ( <
+            div className = 'cube-view-container' >
 
-                <img src = { this.state.icon_home }
-                className = 'button-home'
-                onMouseOver = { this.hoverHomeOn }
-                onMouseOut = {
-                    this.hoverHomeOff
-                }
+            <
+            img src = { this.state.icon_home }
+            className = 'button-home'
+            onMouseOver = { this.hoverHomeOn }
+            onMouseOut = {
+                this.hoverHomeOff
+            }
             onClick = { this.clickHome }
             />
 
-            <canvas ref = 'threeCanvas' > </canvas> 
-            
-            </div>
+            <
+            canvas ref = 'threeCanvas' > < /canvas> 
+
+            <
+            /div>
         );
     }
 }

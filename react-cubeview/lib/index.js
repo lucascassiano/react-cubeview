@@ -91,8 +91,8 @@ var CubeView = function (_Component) {
         key: 'setAngles',
         value: function setAngles(phi, theta) {
             if (this.controls) {
-                this.controls.setPolarAngle(phi);
-                this.controls.setAzimuthalAngle(theta);
+                this.controls.setPolarAngleNoForcing(phi);
+                this.controls.setAzimuthalAngleNoForcing(theta);
             }
         }
     }, {

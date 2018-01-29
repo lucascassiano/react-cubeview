@@ -169,17 +169,25 @@ module.exports = function(THREE) {
         };
 
         this.setPolarAngle = function(angle) {
-
             phi = angle;
             this.forceUpdate();
-
         };
 
         this.setAzimuthalAngle = function(angle) {
             theta = angle;
             this.forceUpdate();
-
         };
+
+        this.setPolarAngleNoForcing = function(angle) {
+            phi = angle;
+            //this.forceUpdate();
+        };
+
+        this.setAzimuthalAngleNoForcing = function(angle) {
+            theta = angle;
+            //this.forceUpdate();
+        };
+
 
         this.rotateLeft = function(angle) {
 
