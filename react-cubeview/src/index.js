@@ -49,6 +49,11 @@ class CubeView extends Component {
         this.hoverHomeOff = this.hoverHomeOff.bind(this);
         this.clickHome = this.clickHome.bind(this);
         this.setAngles = this.setAngles.bind(this);
+        
+        //defining default size, if width and height are not passed as props
+        this.props.width = this.props.width? this.props.width : 100; 
+        this.props.height = this.props.height? this.props.height : 100;
+
     }
 
 /*
@@ -270,7 +275,9 @@ class CubeView extends Component {
     updateDimensions() {
 
         var { width, height } = this.props;
-        height = width / this.props.aspect;
+        if(this.props.aspect)
+            height = width / this.props.aspect;
+
         var canvas = this.refs.threeCanvas;
 
         renderer.setSize(width, height);
@@ -282,10 +289,11 @@ class CubeView extends Component {
     init() {
         var { width, height } = this.props;
         var canvas = this.refs.threeCanvas;
+        
+        if(this.props.aspect)
+            height = width / this.props.aspect;
 
-        height = width / this.props.aspect;
-
-        const marginTop = this.props.marginTop;
+        const marginTop = this.props.marginTop ? this.props.marginTop:0;
 
         scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
