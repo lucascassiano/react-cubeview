@@ -83,11 +83,19 @@ var CubeView = function (_Component) {
         _this2.hoverHomeOn = _this2.hoverHomeOn.bind(_this2);
         _this2.hoverHomeOff = _this2.hoverHomeOff.bind(_this2);
         _this2.clickHome = _this2.clickHome.bind(_this2);
-
+        _this2.setAngles = _this2.setAngles.bind(_this2);
         return _this2;
     }
 
     _createClass(CubeView, [{
+        key: 'setAngles',
+        value: function setAngles(phi, theta) {
+            if (this.controls) {
+                this.controls.setPolarAngle(phi);
+                this.controls.setAzimuthalAngle(theta);
+            }
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
 
@@ -856,8 +864,7 @@ var CubeView = function (_Component) {
                     'canvas',
                     { ref: 'threeCanvas' },
                     ' '
-                ),
-                ' '
+                )
             );
         }
     }]);
@@ -865,7 +872,11 @@ var CubeView = function (_Component) {
     return CubeView;
 }(_react.Component);
 
-//export default Container3;
+//const exported = sizeMe({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);
+//exported.setAngles = CubeView.setAngles;
+
+//export default exported;
 
 
-exports.default = (0, _reactSizeme2.default)({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);
+exports.default = CubeView;
+//export default sizeMe({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);

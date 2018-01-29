@@ -48,7 +48,15 @@ class CubeView extends Component {
         this.hoverHomeOn = this.hoverHomeOn.bind(this);
         this.hoverHomeOff = this.hoverHomeOff.bind(this);
         this.clickHome = this.clickHome.bind(this);
-        
+        this.setAngles = this.setAngles.bind(this);
+    }
+    
+
+    setAngles (phi, theta){
+        if (this.controls) {
+            this.controls.setPolarAngle(phi);
+            this.controls.setAzimuthalAngle(theta);
+        }
     }
 
     componentDidMount() {
@@ -60,15 +68,15 @@ class CubeView extends Component {
         if (this.props.onUpdateAngles)
             this.updateAngles = this.props.onUpdateAngles;
         //console.log('cubeView', this.relatedCanvas);
-        
+
         this.init();
         this.updateDimensions();
-        
-        window.addEventListener('resize', this.updateDimensions.bind(this));    
+
+        window.addEventListener('resize', this.updateDimensions.bind(this));
         canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
         canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
         canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
-        
+
     }
 
     onMouseDown(event) {
@@ -763,23 +771,28 @@ class CubeView extends Component {
     render() {
         var { width, height } = this.props.size;
 
-        return ( <div className = 'cube-view-container' >
+        return ( 
+            <div className = 'cube-view-container' >
 
-            <img src = { this.state.icon_home }
-            className = 'button-home'
-            onMouseOver = { this.hoverHomeOn }
-            onMouseOut = {
-                this.hoverHomeOff
-            }
+                <img src = { this.state.icon_home }
+                className = 'button-home'
+                onMouseOver = { this.hoverHomeOn }
+                onMouseOut = {
+                    this.hoverHomeOff
+                }
             onClick = { this.clickHome }
             />
 
-            <canvas ref = 'threeCanvas' > </canvas> </div>
+            <canvas ref = 'threeCanvas' > </canvas> 
+            
+            </div>
         );
     }
-
-
 }
 
-//export default Container3;
-export default sizeMe({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);
+//const exported = sizeMe({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);
+//exported.setAngles = CubeView.setAngles;
+
+//export default exported;
+export default CubeView;
+//export default sizeMe({ monitorHeight: true, refreshRate: 80, monitorPosition: true })(CubeView);
