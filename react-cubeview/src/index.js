@@ -770,11 +770,9 @@ class CubeView extends Component {
     render() {
         var { width, height } = this.props.size;
 
-        return ( <
-            div className = 'cube-view-container' >
-
-            <
-            img src = { this.state.icon_home }
+        return ( 
+            <div className = 'cube-view-container'> 
+            <img src = { this.state.icon_home }
             className = 'button-home'
             onMouseOver = { this.hoverHomeOn }
             onMouseOut = {
@@ -783,11 +781,8 @@ class CubeView extends Component {
             onClick = { this.clickHome }
             />
 
-            <
-            canvas ref = 'threeCanvas' > < /canvas> 
-
-            <
-            /div>
+            <canvas ref = 'threeCanvas'> </canvas> 
+            </div>
         );
     }
 }

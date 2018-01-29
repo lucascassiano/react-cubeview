@@ -180,11 +180,13 @@ module.exports = function(THREE) {
 
         this.setPolarAngleNoForcing = function(angle) {
             phi = angle;
+            this.update();
             //this.forceUpdate();
         };
 
         this.setAzimuthalAngleNoForcing = function(angle) {
             theta = angle;
+            this.update();
             //this.forceUpdate();
         };
 
